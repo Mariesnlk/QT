@@ -1,0 +1,35 @@
+#include <QtWidgets>
+
+class ResizeObserver : public QLabel
+{
+    Q_OBJECT
+public:
+    ResizeObserver(QWidget* pwgt = nullptr) : QLabel(pwgt)
+    {
+        setAlignment(Qt::AlignCenter);
+    }
+protected:
+    virtual void resizeEvent(QResizeEvent* pe)
+    {
+    setText (QString ("Resized")
+             + "\n width () =" + QString::number(pe->size ().width ())
+             + "\n height () =" + QString::number(pe->size ().height ())
+             );
+     }
+};
+
+int main(int argc, char** argv){
+
+QApplication app(argc, argv);
+
+//QWidget wgt;
+//ResizeObserver wgtq(&wgt);
+ ResizeObserver wgt;
+ wgt.resize(250, 130);
+ wgt.show();
+//wgt.resize(250, 130);
+//wgtq.show();
+
+
+return app.exec();
+}
