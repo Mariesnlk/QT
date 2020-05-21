@@ -37,16 +37,20 @@ void showAllContacts(){
 }
 
 
-void  deleteContact(){
-
-    if(mapPhonebook.isEmpty() || !mapPhonebook.keys().contains(name)){
-        cout<< "You can`t delete this contact! " << endl;
-    } else{
+void  deleteContactByName(){
+    if(!mapPhonebook.isEmpty()){
         cout << "Enter name to delete (First letter should be capital)" << endl;
         cin >> name << endl;
-        mapPhonebook.remove(name);
-    }
+        if(!mapPhonebook.keys().contains(name)){
+            cout<< "You can`t delete this contact! " << endl;
+        } else{
+            mapPhonebook.remove(name);
+        }
+      } else{
+         cout<< "You can`t delete this contact! Phone book is empty! " << endl;
+     }
 }
+
 
 void findByName(){
     cout << "Enter name to find (First letter should be capital): " << endl;
@@ -92,7 +96,7 @@ int main(int argc, char *argv[])
     while(st.contains("yes")){
         cout << "Choice option: 1 - add(name and tel), 2 - delete(name and tel), 3 - show all telephonebook,"
                 " 4 - find contact by name, "
-                " 5 - find contact by tel" << endl;
+                " 5 - find contact by tel, " << endl;
         int s;
         cin >> s;
 
@@ -101,7 +105,7 @@ int main(int argc, char *argv[])
               addContact();
               break;
             case 2:
-              deleteContact();
+              deleteContactByName();
               showAllContacts();
               break;
             case 3:
@@ -113,11 +117,14 @@ int main(int argc, char *argv[])
             case 5:
               findByTel();
               break;
+
         }
 
-        cout << "Type yes to go on: " << endl;
-        st = cin.readLine();
+//        cout << "Type yes to go on: " << endl;
+//        st = cin.readLine();
     }
+    cout << "Type yes to go on: " << endl;
+    st = cin.readLine();
 
     return a.exec();
 }
