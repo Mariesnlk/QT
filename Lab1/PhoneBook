@@ -21,7 +21,12 @@ void addContact(){
         cout<<"Enter tel"<<endl;
         cin>>tel<<endl;
         cout<<"Entered tel is " << tel<<endl;
-        mapPhonebook.insert(name, tel);
+
+        if(mapPhonebook.keys().contains(name) && mapPhonebook.values().contains(tel)){
+            cout<< "This contact exist!" <<endl;
+        } else{
+            mapPhonebook.insert(name, tel);
+        }
 
 }
 
@@ -31,11 +36,15 @@ void showAllContacts(){
          }
 }
 
-//add check
+//not work check
 void  deleteContact(){
     cout << "Enter name to delete (First letter should be capital)" << endl;
     cin >> name << endl;
-    mapPhonebook.remove(name);
+    if(mapPhonebook.isEmpty() || mapPhonebook.keys().contains(name)){
+        cout<< "You can`t delete this contact! " << endl;
+    } else{
+         mapPhonebook.remove(name);
+    }
 }
 
 //add check
@@ -48,11 +57,12 @@ void findByName(){
 }
 
 void findByTel(){
+    QString findTel;
     cout << "Enter tel to find: " << endl;
-    cin >> tel << endl;
+    cin >> findTel << endl;
     //not work
-    for (auto itr = mapPhonebook.begin(); itr != mapPhonebook.end(); itr++)
-        if (itr.value() == tel)
+    for (QMultiMap<QString, QString>:: iterator itr = mapPhonebook.begin(); itr != mapPhonebook.end(); itr++)
+        if (itr.value() == findTel)
             cout << "Name: " << itr.key() << "  Phone: " << itr.value()<< endl;
 }
 
@@ -60,13 +70,13 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
- mapPhonebook.insert("Piggy", "+49 631322187");
-    mapPhonebook.insert("Kermit", "+49 631322181");
-    mapPhonebook.insert("Gonzo", "+49 631322000");
-    mapPhonebook.insert("Gonzo", "+49 631322010");
-    mapPhonebook.insert("Piggy", "+49 631322999");
-    mapPhonebook.insert("Peppa", "+49 631322889");
-    mapPhonebook.insert("Gonzo", "+49 631322186");
+    mapPhonebook.insert("Piggy", "+49631322187");
+    mapPhonebook.insert("Kermit", "+49631322181");
+    mapPhonebook.insert("Gonzo", "+49631322000");
+    mapPhonebook.insert("Gonzo", "+49631322010");
+    mapPhonebook.insert("Piggy", "+49631322999");
+    mapPhonebook.insert("Peppa", "+49631322889");
+    mapPhonebook.insert("Gonzo", "+49631322186");
 
 
 
@@ -79,6 +89,7 @@ int main(int argc, char *argv[])
                 " 5 - find contact by tel" << endl;
         int s;
         cin >> s;
+
         switch (s) {
             case 1:
               addContact();
@@ -96,8 +107,8 @@ int main(int argc, char *argv[])
             case 5:
               findByTel();
               break;
-
         }
+
         cout << "Type yes to go on: " << endl;
         st = cin.readLine();
     }
