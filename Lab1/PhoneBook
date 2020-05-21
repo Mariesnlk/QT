@@ -48,36 +48,41 @@ void  deleteContact(){
     }
 }
 
-//add check
 void findByName(){
     cout << "Enter name to find (First letter should be capital): " << endl;
     cin >> name << endl;
+    if(mapPhonebook.keys().contains(name)){
     for (auto itr = mapPhonebook.begin(); itr != mapPhonebook.end(); itr++)
         if (itr.key() == name)
             cout << "Name: " << itr.key() << "  Phone: " << itr.value()<< endl;
+    } else{
+        cout<<"This name doesn`t exist!"<<endl;
+    }
 }
 
 void findByTel(){
-    QString findTel;
     cout << "Enter tel to find: " << endl;
-    cin >> findTel << endl;
-    //not work
-    for (QMultiMap<QString, QString>:: iterator itr = mapPhonebook.begin(); itr != mapPhonebook.end(); itr++)
-        if (itr.value() == findTel)
+    cin >> tel << endl;
+    if(mapPhonebook.values().contains(tel)){
+    for (auto itr = mapPhonebook.begin(); itr != mapPhonebook.end(); itr++)
+        if (itr.value() == tel)
             cout << "Name: " << itr.key() << "  Phone: " << itr.value()<< endl;
+    }else{
+        cout<<"This tel doesn`t exist!"<<endl;
+    }
 }
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-//    mapPhonebook.insert("Piggy", "+49631322187");
-//    mapPhonebook.insert("Kermit", "+49631322181");
-//    mapPhonebook.insert("Gonzo", "+49631322000");
-//    mapPhonebook.insert("Gonzo", "+49631322010");
-//    mapPhonebook.insert("Piggy", "+49631322999");
-//    mapPhonebook.insert("Peppa", "+49631322889");
-//    mapPhonebook.insert("Gonzo", "+49631322186");
+    mapPhonebook.insert("Piggy", "+49631322187");
+    mapPhonebook.insert("Kermit", "+49631322181");
+    mapPhonebook.insert("Gonzo", "+49631322000");
+    mapPhonebook.insert("Gonzo", "+49631322010");
+    mapPhonebook.insert("Piggy", "+49631322999");
+    mapPhonebook.insert("Peppa", "+49631322889");
+    mapPhonebook.insert("Gonzo", "+49631322186");
 
 
 
