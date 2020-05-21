@@ -36,14 +36,15 @@ void showAllContacts(){
          }
 }
 
-//not work check
+
 void  deleteContact(){
-    cout << "Enter name to delete (First letter should be capital)" << endl;
-    cin >> name << endl;
-    if(mapPhonebook.isEmpty() || mapPhonebook.keys().contains(name)){
+
+    if(mapPhonebook.isEmpty() || !mapPhonebook.keys().contains(name)){
         cout<< "You can`t delete this contact! " << endl;
     } else{
-         mapPhonebook.remove(name);
+        cout << "Enter name to delete (First letter should be capital)" << endl;
+        cin >> name << endl;
+        mapPhonebook.remove(name);
     }
 }
 
@@ -70,13 +71,13 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    mapPhonebook.insert("Piggy", "+49631322187");
-    mapPhonebook.insert("Kermit", "+49631322181");
-    mapPhonebook.insert("Gonzo", "+49631322000");
-    mapPhonebook.insert("Gonzo", "+49631322010");
-    mapPhonebook.insert("Piggy", "+49631322999");
-    mapPhonebook.insert("Peppa", "+49631322889");
-    mapPhonebook.insert("Gonzo", "+49631322186");
+//    mapPhonebook.insert("Piggy", "+49631322187");
+//    mapPhonebook.insert("Kermit", "+49631322181");
+//    mapPhonebook.insert("Gonzo", "+49631322000");
+//    mapPhonebook.insert("Gonzo", "+49631322010");
+//    mapPhonebook.insert("Piggy", "+49631322999");
+//    mapPhonebook.insert("Peppa", "+49631322889");
+//    mapPhonebook.insert("Gonzo", "+49631322186");
 
 
 
