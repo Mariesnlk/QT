@@ -9,7 +9,7 @@ QTextStream cin(stdin);
 QString firstName;
 QString secondName;
 QString tel;
-QString contactToDelete;
+int position;
 
 //example
 void exampleContacts( QVector<Contact>& contacts){
@@ -25,8 +25,9 @@ void exampleContacts( QVector<Contact>& contacts){
 }
 
 void showListOfContacts( QVector<Contact>& contacts){
+    int it = 1;
     for (auto element : contacts)
-        cout << element.ShowAllContacts() << endl;
+        cout << it++ << ". " <<element.ShowAllContacts() << endl;
     cout << endl;
 }
 
@@ -63,14 +64,8 @@ void findByTel( QVector<Contact>& contacts, QString &tel){
 }
 
 
-void deleteContact(QVector<Contact>& contacts, QString &find){
-    for(QVector<Contact>::iterator i = contacts.begin(); i != contacts.end(); ++i ){
-        for(auto element: contacts){
-            if((element.getSecondName().contains(find)) ||  (element.getFirstName().contains(find))|| (element.getTel().contains(find))){
-                 i = contacts.erase( i );
-            }
-        }
-    }
+void deleteContact(QVector<Contact>& contacts, int pos){
+    contacts.removeAt(pos-1);
 }
 
 
@@ -121,10 +116,11 @@ int main(int argc, char *argv[])
               cout << endl;
               break;
             case 2:
-                cout<<"Enter name/surname/tel of contact you want to delete: "<<endl;
-                cin>>contactToDelete<<endl;
+                cout<<"Enter position of contact you want to delete: "<<endl;
+                cin>>position<<endl;
                 if(!contacts.empty()){
-                deleteContact(contacts, contactToDelete);
+                showListOfContacts(contacts);
+                deleteContact(contacts, position);
                 showListOfContacts(contacts);
                 cout << endl;
                 }
