@@ -1,0 +1,12 @@
+#include <QtWidgets>
+#include "ResizeObserver.h"
+
+ResizeObserver::ResizeObserver(QWidget *pwgt): QLabel(pwgt)
+{
+    setAlignment(Qt::AlignCenter);
+}
+
+void ResizeObserver::resizeEvent(QResizeEvent *pe)
+{
+    setText ("width =" + QString::number(pe->size ().width ())+ "\n height =" + QString::number(pe->size ().height ()));
+}
